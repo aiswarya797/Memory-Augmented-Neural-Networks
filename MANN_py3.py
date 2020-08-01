@@ -215,6 +215,7 @@ class mann(object):
 		K_t = cosine_similarity(k_t, M_t)
 		wr_t = tf.nn.softmax(K_t)#read weight vector
 
+		## usage weights
 		wu_t = gamma*wu_tm1 + tf.reduce_sum(wr_t, axis=1)+ tf.reduce_sum(ww_t, axis=1)#write weight vector
 		#This memory is used by the controller as the input to a classifier, such as a softmax output layer, and as an additional input for the next controller state.
 		r_t = tf.reshape(tf.matmul(wr_t, M_t), shape=(self.batch_size,-1))	#The memory vector
